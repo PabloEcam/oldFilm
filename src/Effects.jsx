@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react'
-import { useFrame } from '@react-three/fiber'
 import {
   EffectComposer,
   Noise,
@@ -33,12 +32,16 @@ function Effects() {
       ).padStart(4, '0')}.jpg`
   )
 
-  const textureList3 = ['./texture3/ripped.png']
+  const textureList3 = Array.from(
+    { length: 31 },
+    (_, i) => `./texture3/imagen${String(i).padStart(2, '1')}.jpg`
+  )
 
   const {
     texture,
     blend,
     interval,
+    aspectCorrection,
     opacityNoise,
     multiplyNoise,
     darknessVignette,
@@ -90,7 +93,8 @@ function Effects() {
         },
         value: BlendFunction.ADD
       },
-      interval: { value: 1000, min: 100, max: 2000, step: 100 }
+      interval: { value: 1000, min: 100, max: 2000, step: 100 },
+      aspectCorrection: { value: false }
     }),
     Noise: folder({
       opacityNoise: {
@@ -110,18 +114,6 @@ function Effects() {
     })
   })
 
-  /*   useFrame(() => {
-    setInternalCounter((prevCounter) => (prevCounter + 1) % frameInterval)
-    if (internalCounter === 0) {
-      if (frameCount < texture.length) {
-        setCurrentTexture(texture[frameCount])
-        setFrameCount((prevContador) => (prevContador + 1) % texture.length)
-      } else {
-        setFrameCount(0)
-      }
-    }
-  })
- */
   useEffect(() => {
     const intervalId = setInterval(() => {
       setInternalCounter((prevCounter) => (prevCounter + 1) % frameInterval)
@@ -146,7 +138,11 @@ function Effects() {
         offset={offsetVignette}
         darkness={darknessVignette}
       />
-      <Texture blendFunction={blend} textureSrc={currentTexture} />
+      <Texture
+        blendFunction={blend}
+        textureSrc={currentTexture}
+        aspectCorrection={aspectCorrection}
+      />
     </EffectComposer>
   )
 }
