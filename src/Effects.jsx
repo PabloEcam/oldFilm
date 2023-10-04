@@ -33,7 +33,7 @@ function Effects() {
       ).padStart(4, '0')}.jpg`
   )
 
-  const textureList3 = ['./texture3/fruit.png']
+  const textureList3 = ['./texture3/ripped.png']
 
   const {
     texture,
@@ -62,22 +62,22 @@ function Effects() {
           COLOR_BURN: BlendFunction.COLOR_BURN,
           COLOR_DODGE: BlendFunction.COLOR_DODGE,
           DARKEN: BlendFunction.DARKEN,
-          /*  DIFFERENCE: BlendFunction.DIFFERENCE, */
+          DIFFERENCE: BlendFunction.DIFFERENCE,
           DIVIDE: BlendFunction.DIVIDE,
           DST: BlendFunction.DST,
-          /* EXCLUSION: BlendFunction.EXCLUSION, */
+          EXCLUSION: BlendFunction.EXCLUSION,
           HARD_LIGHT: BlendFunction.HARD_LIGHT,
           HARD_MIX: BlendFunction.HARD_MIX,
           HUE: BlendFunction.HUE,
-          /* INVERT: BlendFunction.INVERT, */
-          /* INVERT_RGB: BlendFunction.INVERT_RGB, */
+          INVERT: BlendFunction.INVERT,
+          INVERT_RGB: BlendFunction.INVERT_RGB,
           LIGHTEN: BlendFunction.LIGHTEN,
           LINEAR_BURN: BlendFunction.LINEAR_BURN,
           LINEAR_DODGE: BlendFunction.LINEAR_DODGE,
           LINEAR_LIGHT: BlendFunction.LINEAR_LIGHT,
           LUMINOSITY: BlendFunction.LUMINOSITY,
           MULTIPLY: BlendFunction.MULTIPLY,
-          /*  NEGATION: BlendFunction.NEGATION, */
+          NEGATION: BlendFunction.NEGATION,
           NORMAL: BlendFunction.NORMAL,
           OVERLAY: BlendFunction.OVERLAY,
           PIN_LIGHT: BlendFunction.PIN_LIGHT,
