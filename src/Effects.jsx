@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useFrame } from '@react-three/fiber'
 import {
   EffectComposer,
@@ -36,6 +36,7 @@ function Effects() {
   const {
     texture,
     blend,
+    interval,
     opacityNoise,
     multiplyNoise,
     darknessVignette,
@@ -82,7 +83,8 @@ function Effects() {
           VIVID_LIGHT: BlendFunction.VIVID_LIGHT
         },
         value: BlendFunction.ADD
-      }
+      },
+      interval: { value: 1000, min: 100, max: 2000, step: 100 }
     }),
     Noise: folder({
       opacityNoise: {
@@ -102,9 +104,8 @@ function Effects() {
     })
   })
 
-  useFrame(() => {
+  /*   useFrame(() => {
     setInternalCounter((prevCounter) => (prevCounter + 1) % frameInterval)
-
     if (internalCounter === 0) {
       if (frameCount < texture.length) {
         setCurrentTexture(texture[frameCount])
@@ -114,6 +115,22 @@ function Effects() {
       }
     }
   })
+ */
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setInternalCounter((prevCounter) => (prevCounter + 1) % frameInterval)
+      if (internalCounter === 0) {
+        if (frameCount < texture.length) {
+          setCurrentTexture(texture[frameCount])
+          setFrameCount((prevContador) => (prevContador + 1) % texture.length)
+        } else {
+          setFrameCount(0)
+        }
+      }
+    }, interval / 60)
+
+    return () => clearInterval(intervalId)
+  }, [internalCounter])
 
   return (
     <EffectComposer>
