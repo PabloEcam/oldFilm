@@ -33,6 +33,8 @@ function Effects() {
       ).padStart(4, '0')}.jpg`
   )
 
+  const textureList3 = ['./texture3/fruit.png']
+
   const {
     texture,
     blend,
@@ -44,7 +46,11 @@ function Effects() {
   } = useControls({
     Texure: folder({
       texture: {
-        options: { OldFilm1: textureList1, OldFilm2: textureList2 },
+        options: {
+          OldFilm1: textureList1,
+          OldFilm2: textureList2,
+          PNG: textureList3
+        },
         value: textureList1
       },
       blend: {
